@@ -1,13 +1,15 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useReactToPrint } from 'react-to-print';
 
-export default function ConfirmationPage() {
+function ConfirmationContent() {
   const searchParams = useSearchParams();
   const orderId = searchParams.get('orderId') || '';
   const total = parseFloat(searchParams.get('total') || '0');
+  const pointsEarned = parseInt(searchParams.get('points') || '0');
+  const pointsRedeemed = parseInt(searchParams.get('redeemed') || '0');
   const [orderNumber, setOrderNumber] = useState<number | null>(null);
   const [orderDate, setOrderDate] = useState<string | null>(null);
 
@@ -68,8 +70,20 @@ export default function ConfirmationPage() {
               <span className="text-gray-600">Status</span>
               <span className="text-green-600 font-medium">Confirmed</span>
             </div>
+            {pointsRedeemed > 0 && (
+              <div className="flex justify-between text-green-600">
+                <span>Points Used</span>
+                <span className="font-medium">-{pointsRedeemed} pts (-${(pointsRedeemed / 100).toFixed(2)})</span>
+              </div>
+            )}
+            {pointsEarned > 0 && (
+              <div className="flex justify-between text-amber-600">
+                <span>Points Earned</span>
+                <span className="font-medium">+{pointsEarned} pts</span>
+              </div>
+            )}
             <div className="flex justify-between pt-3 border-t">
-              <span className="text-gray-800 font-medium">Total</span>
+              <span className="text-gray-800 font-medium">Total Paid</span>
               <span className="text-xl font-bold text-amber-700">${total.toFixed(2)}</span>
             </div>
           </div>
@@ -131,5 +145,13 @@ export default function ConfirmationPage() {
         </div>
       </main>
     </div>
+  );
+}
+
+export default function ConfirmationPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gray-50 flex items-center justify-center"><div className="w-10 h-10 border-4 border-amber-600 border-t-transparent rounded-full animate-spin" /></div>}>
+      <ConfirmationContent />
+    </Suspense>
   );
 }

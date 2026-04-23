@@ -63,7 +63,7 @@ export async function GET(request: NextRequest) {
   // Top products
   const productMap: Record<string, { name: string; category: string; qty: number; revenue: number }> = {};
   for (const item of items) {
-    const p = item.product as { name: string; category: string } | null;
+    const p = item.product as unknown as { name: string; category: string } | null;
     if (!p) continue;
     if (!productMap[p.name]) productMap[p.name] = { name: p.name, category: p.category, qty: 0, revenue: 0 };
     productMap[p.name].qty += item.quantity;

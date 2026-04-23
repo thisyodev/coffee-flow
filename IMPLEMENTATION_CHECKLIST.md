@@ -55,7 +55,7 @@
 
 - [x] Implement points earning on orders
 - [x] Add tier-based points multiplier
-- [ ] Create points redemption functionality
+- [x] Create points redemption functionality
 - [ ] Build LINE push notification for points
 - [x] Create loyalty dashboard page
 - [x] Add points progress bar component

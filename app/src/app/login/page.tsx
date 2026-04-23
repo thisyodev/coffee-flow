@@ -1,5 +1,6 @@
 'use client';
 
+import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import LineLoginButton from '@/components/LineLoginButton';
 
@@ -11,7 +12,7 @@ const ERROR_MESSAGES: Record<string, string> = {
   auth_failed: 'Login failed. Please try again.',
 };
 
-export default function LoginPage() {
+function LoginContent() {
   const searchParams = useSearchParams();
   const errorKey = searchParams.get('error');
   const errorMessage = errorKey ? ERROR_MESSAGES[errorKey] : null;
@@ -83,5 +84,13 @@ export default function LoginPage() {
         </div>
       </main>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gray-50" />}>
+      <LoginContent />
+    </Suspense>
   );
 }

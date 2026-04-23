@@ -1,5 +1,9 @@
 // Pure tier utility functions — safe to import in client components
 
+export const POINTS_PER_DOLLAR = 100;
+export const pointsToDollars = (points: number) => Math.floor(points / POINTS_PER_DOLLAR);
+export const dollarsToPoints = (dollars: number) => dollars * POINTS_PER_DOLLAR;
+
 export const TIER_THRESHOLDS = {
   Bronze: 0,
   Silver: 1000,

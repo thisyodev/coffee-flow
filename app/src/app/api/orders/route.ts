@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
-import { addPointsForOrder } from '@/lib/membership';
+import { addPointsForOrder, redeemPointsForOrder } from '@/lib/membership';
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
-  const { sessionId, cart, total, customerName, customerEmail } = body;
+  const { sessionId, cart, total, subtotal, pointsToRedeem = 0, customerName, customerEmail } = body;
 
   if (!cart?.length || !total) {
     return NextResponse.json({ error: 'Invalid order data' }, { status: 400 });
@@ -65,11 +65,18 @@ export async function POST(request: NextRequest) {
     });
   }
 
-  // Award points if user is logged in
-  let pointsEarned = 0;
-  if (userId) {
-    pointsEarned = await addPointsForOrder(userId, order.id, total);
+  // Redeem points first (before earning)
+  let pointsRedeemed = 0;
+  if (userId && pointsToRedeem >= 100) {
+    const redemption = await redeemPointsForOrder(userId, order.id, pointsToRedeem);
+    if (redemption.success) pointsRedeemed = pointsToRedeem;
   }
 
-  return NextResponse.json({ order, pointsEarned });
+  // Award points on the subtotal (before discount)
+  let pointsEarned = 0;
+  if (userId) {
+    pointsEarned = await addPointsForOrder(userId, order.id, subtotal ?? total);
+  }
+
+  return NextResponse.json({ order, pointsEarned, pointsRedeemed });
 }
