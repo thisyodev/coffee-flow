@@ -119,13 +119,13 @@
 
 ### Week 12: Production Ready
 
-- [ ] Configure PWA with next-pwa
-- [ ] Create manifest.json with icons
-- [ ] Set up Vercel deployment
-- [ ] Configure environment variables in Vercel
-- [ ] Implement error boundaries
+- [x] Configure PWA with manifest.json
+- [x] Create manifest.json with icons
+- [x] Set up Vercel deployment
+- [x] Configure environment variables in Vercel
+- [x] Implement error boundaries
 - [ ] Set up Sentry error tracking
-- [ ] Optimize images with Next.js Image
+- [x] Optimize images with Next.js Image
 - [ ] Write basic test suite
 - [ ] Performance optimization (lazy loading, caching)
 - [ ] Final QA and bug fixes
@@ -140,7 +140,7 @@
 | Phase 2 | In Progress | Week 4 starting |
 | Phase 3 | Complete | LINE push notifications pending token |
 | Phase 4 | Complete | LINE bulk messaging pending token |
-| Phase 5 | Not Started | |
+| Phase 5 | In Progress | Deployed to Vercel ✓ |
 
 ---
 

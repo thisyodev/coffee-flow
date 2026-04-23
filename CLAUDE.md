@@ -104,7 +104,7 @@ NEXT_PUBLIC_APP_URL=http://localhost:3000
 | Phase 2: CRM & LINE Loyalty | ✅ Complete (push notifications pending LINE token) |
 | Phase 3: KDS & Real-time | ✅ Complete |
 | Phase 4: Admin & Analytics | ✅ Complete (LINE bulk messaging pending) |
-| Phase 5: Deployment | ⏳ Not Started |
+| Phase 5: Deployment | 🔄 In Progress — live at [coffee-flow-nine.vercel.app](https://coffee-flow-nine.vercel.app) |
 
 ## Supabase Realtime
 

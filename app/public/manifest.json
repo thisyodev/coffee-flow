@@ -1,0 +1,37 @@
+{
+  "name": "Coffee Flow",
+  "short_name": "Coffee Flow",
+  "description": "Order coffee, earn rewards, skip the line",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fef3c7",
+  "theme_color": "#b45309",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Order Now",
+      "url": "/menu",
+      "description": "Browse menu and order coffee"
+    },
+    {
+      "name": "My Loyalty",
+      "url": "/loyalty",
+      "description": "View points and rewards"
+    },
+    {
+      "name": "My Orders",
+      "url": "/orders",
+      "description": "View order history"
+    }
+  ],
+  "categories": ["food", "shopping"],
+  "lang": "en"
+}

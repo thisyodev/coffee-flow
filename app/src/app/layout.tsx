@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
@@ -14,8 +14,30 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Coffee Flow CRM",
-  description: "Coffee shop management system with CRM, loyalty program, and KDS",
+  title: "Coffee Flow",
+  description: "Order coffee, earn rewards, skip the line",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Coffee Flow",
+  },
+  icons: {
+    icon: "/icons/icon.svg",
+    apple: "/icons/icon.svg",
+  },
+  openGraph: {
+    title: "Coffee Flow",
+    description: "Order coffee, earn rewards, skip the line",
+    type: "website",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#b45309",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({
